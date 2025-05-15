@@ -9,9 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: 'service-account.json',
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
+
 const sheets = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
